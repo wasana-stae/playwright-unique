@@ -15,10 +15,12 @@ test('add to cart', async ({ page }) => {
   await page.getByRole('textbox', { name: 'รหัสผ่าน  รหัสผ่านต้องมีตัวอักษรระหว่าง 8-20' }).fill('Milk2485');
   await page.locator('[data-test="login-button"]').click();
     //timeout
-  await page.waitForTimeout(5000);
+  await page.waitForTimeout(10000);
     //given click product  
   await page.getByRole('button', { name: 'เสื้อยืด เสื้อผ้าสเวต และบราท็อป' }).click();
   await page.getByRole('link', { name: 'เสื้อยืด และ เสื้อแขนกุด' }).click();
+    // //when click add to cart button
+  await page.getByRole('button', { name: 'เพิ่มลงในรถเข็น' }).click();
   await page.goto('https://www.uniqlo.com/th/th/women/tops/t-shirts?path=%2C%2C8404');
   await page.locator('[data-test="product-card-E465760-000"]').getByRole('link', { name: 'เสื้อยืด ทรงมินิ Colour' }).click();
   await page.goto('https://www.uniqlo.com/th/th/products/E465760-000?colorCode=COL37&sizeCode=SMA003');
@@ -28,8 +30,7 @@ test('add to cart', async ({ page }) => {
   await page.locator('[data-test="L"] label').filter({ hasText: 'L' }).click();
   await page.locator('[data-test="เพิ่มลงในตะกร้า-button"]').click();
   await page.locator('[data-test="ดูตะกร้า-button"]').click();
-    // //when click add to cart button
-    // await page.getByRole('button', { name: 'เพิ่มลงในรถเข็น' }).click();
+
     // //then click view cart button
     // await page.getByRole('button', { name: 'ดูรถเข็น' }).click();
     // //timeout
