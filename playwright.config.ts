@@ -21,6 +21,11 @@ export default defineConfig({
   // retries: process.env.CI ? 2 : 0,
   // /* Opt out of parallel tests on CI. */
   // workers: process.env.CI ? 1 : undefined,
+  /* Timeout settings - increased for complex websites */
+  timeout: 120000, // 120 seconds per test (increased for Uniqlo)
+  expect: {
+    timeout: 10000, // 10 seconds per assertion
+  },
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Screenshot settings */
@@ -36,6 +41,8 @@ export default defineConfig({
     video: 'on', 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    navigationTimeout: 60000, // 60 seconds for navigation
+    actionTimeout: 15000, // 15 seconds for actions
   },
 
   /* Configure projects for major browsers */
