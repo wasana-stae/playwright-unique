@@ -15,5 +15,5 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'รหัสผ่าน  รหัสผ่านต้องมีตัวอักษรระหว่าง 8-20' }).fill('Milk2485');
   await page.locator('[data-test="login-button"]').click();
   //timeout
-  await page.waitForTimeout(10000);
+  await page.waitForTimeout(5000);
 });
