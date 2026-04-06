@@ -7,6 +7,17 @@ test('test', async ({ page }) => {
 //wait for manu laod
   await page.waitForLoadState('load');
   await page.waitForTimeout(2000);
+//get page height
+let lastHeight = await page.evaluate(() => document.body.scrollHeight);
+// Scroll gradually from header to footer
+  while (true) {
+    await page.evaluate(() => window.scrollBy(0, 800));
+    await page.waitForTimeout(1000);
+    
+    let newHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+    if (newHeight === lastHeight) break; // Reached footer
+    lastHeight = newHeight;
+  }
 //scrool ที่ html element เพื่อให้โหลดรูปภาพของสินค้า
   await page.locator('html').evaluate(el => el.scrollTop = el.scrollHeight);
 // Wait ให้ lazy load images
